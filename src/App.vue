@@ -1,32 +1,23 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <keep-alive v-if="$route.meta.keepAline">
+      <router-view />
+    </keep-alive>
+    <router-view v-else></router-view>
+    <main-tar-bar></main-tar-bar>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import MainTarBar from "components/common/tarbar/MainTarBar.vue";
+export default {
+  name: "App",
+  components: { MainTarBar },
+};
+</script>
 
-#nav {
-  padding: 30px;
+TarBar
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+<style lang="scss" scoped>
+@import "./assets/css/base.css";
 </style>
