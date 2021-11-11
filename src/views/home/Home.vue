@@ -16,7 +16,10 @@
       :click="true"
       :listen-scroll="true"
       :probeType="3"
+      :pullup="true"
       @scroll="contentScroll"
+      @scrollToEnd="pullup"
+      ref="scroll"
     >
       <!-- 轮播图 -->
       <div class="content">
@@ -30,6 +33,7 @@
         ></tab-control>
         <goods-list :goodsList="showGoodsList"></goods-list>
       </div>
+      <back-top @click.native="backClick()" v-show="isBack"></back-top>
     </scroll>
   </div>
 </template>
@@ -43,8 +47,9 @@ import { getHomeMultidata, getHomeData } from "network/home.js";
 import HomeRecommend from "./childcomps/HomeRecommend.vue";
 import HomeKeywords from "./childcomps/HomeKeywords.vue";
 import TabControl from "../../components/content/tabcontrol/TabControl.vue";
-import GoodsList from "./childcomps/GoodsList.vue";
-import Scroll from "../../scroll/scroll.vue";
+import GoodsList from "../../components/content/goods/GoodsList.vue";
+import Scroll from "components/common/scroll/scroll.vue";
+import BackTop from "../../components/content/backtop/BackTop.vue";
 export default {
   name: "Home",
   data() {
@@ -58,7 +63,10 @@ export default {
       },
       currentType: "pop",
       tabOffsetTop: null,
+      tabhHeight: null,
+      tabTop: null,
       isTabControl: false,
+      isBack: false,
     };
   },
   components: {
@@ -69,6 +77,7 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
+    BackTop,
   },
   created() {
     this.getHomeMultidata();
@@ -81,6 +90,12 @@ export default {
     showGoodsList() {
       return this.goodsList[this.currentType].list;
     },
+  },
+  activated() {
+    this.$refs.scroll.scrollTo(0, this.tabTop, 10);
+  },
+  deactivated() {
+    this.tabTop = this.tabhHeight;
   },
   updated() {},
   methods: {
@@ -97,9 +112,28 @@ export default {
           break;
       }
       this.$refs.tabControl2.currentIndex = index;
+      this.$refs.tabControl.currentIndex = index;
+
+      if (Math.abs(this.tabhHeight) >= this.tabOffsetTop) {
+        this.$refs.scroll.scrollTo(0, -this.tabOffsetTop, 0);
+      }
     },
     contentScroll(position) {
+      // 决定tab-control是否吸顶显示
       this.isTabControl = this.tabOffsetTop <= -position.y;
+
+      //判断backTop是否显示
+      this.isBack = Math.abs(position.y) >= 1000;
+
+      this.tabhHeight = position.y;
+    },
+    // 点击返回顶部
+    backClick() {
+      this.$refs.scroll.scrollTo(0, 0, 100);
+    },
+    // 上拉加载更多
+    pullup() {
+      this.getHomeData(this.currentType);
     },
 
     // axios请求数据
@@ -111,16 +145,19 @@ export default {
 
         // recommend所需要的数据
         this.recommend.push(...res.data.recommend.list);
+
+        // 获取tab-control距离顶部的高度
+        this.$nextTick(() => {
+          this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop;
+        });
       });
     },
     getHomeData(type) {
       getHomeData(type, this.goodsList[type].page).then((res) => {
         this.goodsList[type].list.push(...res.data.list);
+        this.goodsList[type].page += 1;
 
-        this.$nextTick(() => {
-          this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop;
-          console.log(this.tabOffsetTop);
-        });
+        this.$refs.scroll.finishPullUp();
       });
     },
   },

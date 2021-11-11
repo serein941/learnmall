@@ -7,6 +7,7 @@ const Home = () => import('../views/home/Home.vue')
 const Category = () => import('../views/category/Category.vue')
 const Shopcart = () => import('../views/shopcart/Shopcart.vue')
 const Profile = () => import('../views/profile/Profile.vue')
+const Detail = () => import('../views/detail/Detail.vue')
 
 const routes = [
   {
@@ -16,22 +17,27 @@ const routes = [
   {
     path: '/home',
     component: Home,
-    meta: { keepAline: true }
+    meta: { istarbar: true }
   },
   {
     path: '/category',
     component: Category,
-    meta: { keepAline: false }
+    meta: { istarbar: true }
   },
   {
     path: '/shopcart',
     component: Shopcart,
-    meta: { keepAline: false }
+    meta: { istarbar: true }
   },
   {
     path: '/profile',
     component: Profile,
-    meta: { keepAline: false }
+    meta: { istarbar: true }
+  },
+  {
+    path: '/detail',
+    component: Detail,
+    meta: { keepAline: false, istarbar: false }
   }
 ]
 

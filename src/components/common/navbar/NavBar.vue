@@ -1,8 +1,8 @@
 <template>
   <div id="nav-bar">
-    <div class="right"><slot name="right"></slot></div>
-    <div class="center"><slot name="center"></slot></div>
     <div class="left"><slot name="left"></slot></div>
+    <div class="center"><slot name="center"></slot></div>
+    <div class="right"><slot name="right"></slot></div>
   </div>
 </template>
 
@@ -34,7 +34,7 @@ export default {
 .center {
   flex: 1;
 }
-.right img {
+.left img {
   margin-top: 10px;
 }
 </style>

@@ -141,6 +141,9 @@ export default {
       // 代理better-scroll的refresh方法
       this.scroll && this.scroll.refresh();
     },
+    finishPullUp() {
+      this.scroll && this.scroll.finishPullUp && this.scroll.finishPullUp();
+    },
     scrollTo() {
       // 代理better-scroll的scrollTo方法
       this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments);

@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <keep-alive v-if="$route.meta.keepAline">
+    <keep-alive exclude="Detail">
       <router-view />
     </keep-alive>
-    <router-view v-else></router-view>
-    <main-tar-bar></main-tar-bar>
+    <main-tar-bar v-if="$route.meta.istarbar"></main-tar-bar>
   </div>
 </template>
 

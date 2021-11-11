@@ -1,7 +1,11 @@
 <template>
   <div id="goods">
-    <div class="goods-item" v-for="item in goodsList" :key="item.iid">
-      <img :src="item.show.img" :key="item.show.img" alt="" />
+    <div class="goods-item" v-for="(item, index) in goodsList" :key="index">
+      <img
+        v-lazy="item.image || item.show.img"
+        :key="item.image || item.show.img"
+        @click="ToClick(item.iid)"
+      />
       <div class="goods-info">
         <p>{{ item.title }}</p>
         <span class="price">¥{{ item.price }}</span>
@@ -21,6 +25,19 @@ export default {
       },
     },
   },
+  computed: {
+    showImg() {
+      return this.goodsList;
+    },
+  },
+  methods: {
+    ToClick(iid) {
+      this.$router.push({
+        path: "/detail",
+        query: { iid: iid },
+      });
+    },
+  },
 };
 </script>
 
@@ -28,9 +45,11 @@ export default {
 #goods {
   display: flex;
   flex-wrap: wrap;
+  padding: 0 2%;
+  justify-content: space-between;
 }
 .goods-item {
-  width: 50%;
+  width: 49%;
   position: relative;
   padding-bottom: 40px;
 }
