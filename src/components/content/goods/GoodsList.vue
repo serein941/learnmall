@@ -2,8 +2,8 @@
   <div id="goods">
     <div class="goods-item" v-for="(item, index) in goodsList" :key="index">
       <img
-        v-lazy="item.image || item.show.img"
-        :key="item.image || item.show.img"
+        v-lazy="item.img || item.image || item.show.img"
+        :key="item.img || item.image || item.show.img"
         @click="ToClick(item.iid)"
       />
       <div class="goods-info">

@@ -93,11 +93,11 @@ export default {
   },
   activated() {
     this.$refs.scroll.scrollTo(0, this.tabTop, 10);
+    this.$refs.scroll.refresh();
   },
   deactivated() {
     this.tabTop = this.tabhHeight;
   },
-  updated() {},
   methods: {
     tabClick(index) {
       switch (index) {

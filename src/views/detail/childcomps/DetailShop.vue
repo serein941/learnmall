@@ -5,13 +5,15 @@
       <span>{{ shop.name }}</span>
     </div>
     <div class="info-middle">
-      <div class="middle-left">
-        <div>{{ shop.sells | sellCountFilter }}</div>
-        <div>总销量</div>
-      </div>
-      <div class="middle-left">
-        <div>{{ shop.goodsCount }}</div>
-        <div>全部宝贝</div>
+      <div class="middle">
+        <div class="middle-left">
+          <div>{{ shop.sells | sellCountFilter }}</div>
+          <div>总销量</div>
+        </div>
+        <div class="middle-left">
+          <div>{{ shop.goodsCount }}</div>
+          <div>全部宝贝</div>
+        </div>
       </div>
       <div class="middle-right">
         <table>
@@ -62,8 +64,8 @@ export default {
   display: flex;
 }
 .info-top img {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
 }
 .info-top span {
@@ -80,8 +82,15 @@ export default {
   margin-top: 20px;
   font-size: 12px;
 }
+.middle {
+  flex: 1;
+  display: flex;
+}
 .info-middle .middle-left {
   flex: 1;
+}
+.info-middle .middle-left:nth-child(2) {
+  border-right: 2px solid #ddd;
 }
 .info-middle .middle-left div:nth-child(1) {
   font-size: 20px;
@@ -90,10 +99,11 @@ export default {
   margin-top: 10px;
 }
 .info-middle .middle-right {
-  flex: 2;
+  flex: 1;
 }
 .info-middle .middle-right table {
-  width: 100%;
+  width: 80%;
+  float: right;
 }
 .info-middle .middle-right table tr td:nth-child(1) {
   text-align: left;
