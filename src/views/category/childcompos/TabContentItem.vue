@@ -73,6 +73,7 @@ export default {
   },
   updated() {
     this.tabOffset = this.$refs.control2.$el.offsetTop;
+    console.log(this.tabOffset);
   },
   methods: {
     contentScroll(position) {
