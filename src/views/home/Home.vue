@@ -3,6 +3,7 @@
     <nav-bar class="nav-bar">
       <div slot="center">购物街</div>
     </nav-bar>
+    <home-search class="search"></home-search>
     <tab-control
       v-show="isTabControl"
       class="tab-control"
@@ -21,8 +22,8 @@
       @scrollToEnd="pullup"
       ref="scroll"
     >
-      <!-- 轮播图 -->
       <div class="content">
+        <!-- 轮播图 -->
         <home-swiper :swiperList="swiperList"></home-swiper>
         <home-recommend :recommend="recommend"></home-recommend>
         <home-keywords></home-keywords>
@@ -50,6 +51,7 @@ import TabControl from "../../components/content/tabcontrol/TabControl.vue";
 import GoodsList from "../../components/content/goods/GoodsList.vue";
 import Scroll from "components/common/scroll/scroll.vue";
 import BackTop from "../../components/content/backtop/BackTop.vue";
+import HomeSearch from "./childcomps/HomeSearch.vue";
 export default {
   name: "Home",
   data() {
@@ -78,6 +80,7 @@ export default {
     GoodsList,
     Scroll,
     BackTop,
+    HomeSearch,
   },
   created() {
     this.getHomeMultidata();
@@ -99,6 +102,7 @@ export default {
     this.tabTop = this.tabhHeight;
   },
   methods: {
+    // 根据tab-control的index决定获取的数据
     tabClick(index) {
       switch (index) {
         case 0:
@@ -169,9 +173,15 @@ export default {
   position: relative;
   height: 100vh;
 }
+.search {
+  position: relative;
+  top: 44px;
+  left: 0;
+  right: 0;
+}
 .wrapper {
   position: absolute;
-  top: 44px;
+  top: 89px;
   bottom: 49px;
   left: 0;
   right: 0;

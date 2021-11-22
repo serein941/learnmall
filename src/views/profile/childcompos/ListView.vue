@@ -2,7 +2,7 @@
   <div id="list">
     <div v-for="(item, index) in listData" :key="index" class="item">
       <span class="icon">
-        <svg :fill="item.iconColor"><use :xlink:href="item.icon"></use></svg>
+        <img :src="item.img" alt="" />
       </span>
       <div class="info">{{ item.info }}</div>
     </div>
@@ -36,7 +36,7 @@ export default {
   position: relative;
 }
 
-.icon svg {
+.icon img {
   width: 18px;
   height: 18px;
 }

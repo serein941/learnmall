@@ -7,9 +7,7 @@
       :key="index"
     >
       <div class="cart-select" @click="buttonClick(index)">
-        <div v-show="item.checked">
-          <img src="~/assets/img/cart/tick.svg" />
-        </div>
+        <img v-show="item.checked" src="~/assets/img/cart/tick.svg" />
       </div>
       <div class="cart-img"><img :src="item.imgURL" alt="" /></div>
       <div class="cart-text">
@@ -53,10 +51,16 @@ export default {
   border-radius: 50%;
   border: 1px solid #ddd;
   margin-top: 32px;
+  position: relative;
 }
-.cart-select > div > img {
+.cart-select > img {
+  width: 100%;
   background-color: var(--color-high-text);
   border-radius: 50%;
+  vertical-align: middle;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .cart-img {
   width: 80px;

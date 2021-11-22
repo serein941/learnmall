@@ -65,6 +65,7 @@ export default {
 }
 .main {
   display: flex;
+  align-items: center;
   margin-top: 3px;
 }
 .select {
@@ -72,8 +73,10 @@ export default {
   height: 16px;
   border: 1px solid #ddd;
   border-radius: 50%;
+  vertical-align: middle;
 }
 .select img {
+  width: 100%;
   background-color: var(--color-high-text);
   border-radius: 50%;
 }

@@ -8,6 +8,7 @@ const Category = () => import('../views/category/Category.vue')
 const Shopcart = () => import('../views/shopcart/Shopcart.vue')
 const Profile = () => import('../views/profile/Profile.vue')
 const Detail = () => import('../views/detail/Detail.vue')
+const Search = () => import('../views/search/Search.vue')
 
 const routes = [
   {
@@ -37,7 +38,12 @@ const routes = [
   {
     path: '/detail',
     component: Detail,
-    meta: { keepAline: false, istarbar: false }
+    meta: { istarbar: false }
+  },
+  {
+    path: '/search',
+    component: Search,
+    meta: { istarbar: false }
   }
 ]
 

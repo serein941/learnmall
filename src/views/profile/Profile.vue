@@ -36,13 +36,25 @@ export default {
   data: function () {
     return {
       orderList: [
-        { icon: "#order", iconColor: "#ff8198", info: "我的消息" },
-        { icon: "#point", iconColor: "#fc7b53", info: "积分商城" },
-        { icon: "#vip", iconColor: "#ffc636", info: "会员卡" },
+        {
+          img: require("assets/img/profile/我的信息.png"),
+          info: "我的消息",
+        },
+        {
+          img: require("assets/img/profile/积分商城.png"),
+          info: "积分商城",
+        },
+        { img: require("assets/img/profile/会员卡.png"), info: "会员卡" },
       ],
       serviceList: [
-        { icon: "#service", iconColor: "#ff8198", info: "我的购物车" },
-        { icon: "#download", iconColor: "#ff8198", info: "下载购物APP" },
+        {
+          img: require("assets/img/profile/卖家购物车.png"),
+          info: "我的购物车",
+        },
+        {
+          img: require("assets/img/profile/应用市场.png"),
+          info: "下载购物APP",
+        },
       ],
     };
   },

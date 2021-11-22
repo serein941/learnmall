@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default function request(config) {
     const instance = axios.create({
-        baseURL: 'coderwhy接口',
+        baseURL: 'coderwhy',
         timeout: 50000
     })
 
